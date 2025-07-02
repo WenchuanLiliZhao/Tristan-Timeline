@@ -1,0 +1,67 @@
+# Development files
+src/
+!src/styles/
+public/
+.vscode/
+.idea/
+
+# Build artifacts (except dist)
+node_modules/
+.cache/
+
+# Config files
+vite.config.ts
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+eslint.config.js
+
+# Development and demo files
+src/main.tsx
+src/App.tsx
+src/App.scss
+src/pages/
+src/demos/
+src/data/
+index.html
+
+# Documentation that's not needed in package
+PROJECT_STRUCTURE.md
+.env*
+
+# Version control
+.git/
+.gitignore
+
+# Asset files not needed in package
+*.svg
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? 

@@ -1,0 +1,78 @@
+.timeline-ruler-year {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color--bg-prime);
+
+  .timeline-ruler-year-label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--color--border-prime);
+  }
+
+  .timeline-ruler-month {
+    border-right: 1px solid var(--color--border-prime);
+    border-bottom: 1px solid var(--color--border-prime);
+
+    .timeline-ruler-month-label {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      padding: 0 8px;
+      background-color: var(--color--bg-secondary);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      
+      border-top: 1px solid var(--color--border-prime);
+      border-bottom: 1px solid var(--color--border-prime);
+      
+
+      .year-for-month {
+        color: var(--color--text-negative);
+      }
+    }
+
+    .timeline-ruler-month-grid {
+      display: flex;
+    }
+
+    .timeline-ruler-day {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      .timeline-ruler-day-label {
+        // padding: 4px;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        
+
+
+        &.today {
+          display: block;
+        }
+
+        .timeline-ruler-day-label-text {
+          text-align: center;
+          font-size: 10px;
+          line-height: 12px;
+          color: var(--color--text-negative);
+        }
+      }
+    }
+  }
+}

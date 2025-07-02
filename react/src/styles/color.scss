@@ -1,0 +1,223 @@
+@use "sass:color";
+
+:root {
+  // Base colors
+  --color-chart--base-black: #0A0B0D;
+  --color-chart--base-white: #FFFFFF;
+
+  // Transparent colors - normal
+  --color-chart--trans-1: rgba(0, 0, 0, 0.93);
+  --color-chart--trans-2: rgba(0, 0, 0, 0.82);
+  --color-chart--trans-3: rgba(0, 0, 0, 0.72);
+  --color-chart--trans-4: rgba(0, 0, 0, 0.64);
+  --color-chart--trans-5: rgba(0, 0, 0, 0.56);
+  --color-chart--trans-6: rgba(0, 0, 0, 0.48);
+  --color-chart--trans-7: rgba(0, 0, 0, 0.40);
+  --color-chart--trans-8: rgba(0, 0, 0, 0.32);
+  --color-chart--trans-9: rgba(0, 0, 0, 0.24);
+  --color-chart--trans-10: rgba(0, 0, 0, 0.16);
+  --color-chart--trans-11: rgba(0, 0, 0, 0.10);
+  --color-chart--trans-12: rgba(0, 0, 0, 0.04);
+
+  // Transparent colors - inverse
+  --color-chart--trans-inverse-1: rgba(255, 255, 255, 0.96);
+  --color-chart--trans-inverse-2: rgba(255, 255, 255, 0.89);
+  --color-chart--trans-inverse-3: rgba(255, 255, 255, 0.83);
+  --color-chart--trans-inverse-4: rgba(255, 255, 255, 0.75);
+  --color-chart--trans-inverse-5: rgba(255, 255, 255, 0.67);
+  --color-chart--trans-inverse-6: rgba(255, 255, 255, 0.58);
+  --color-chart--trans-inverse-7: rgba(255, 255, 255, 0.50);
+  --color-chart--trans-inverse-8: rgba(255, 255, 255, 0.42);
+  --color-chart--trans-inverse-9: rgba(255, 255, 255, 0.33);
+  --color-chart--trans-inverse-10: rgba(255, 255, 255, 0.24);
+  --color-chart--trans-inverse-11: rgba(255, 255, 255, 0.14);
+  --color-chart--trans-inverse-12: rgba(255, 255, 255, 0.03);
+
+  // Gray colors
+  --color-chart--gray-1: #121212;
+  --color-chart--gray-2: #2E2E2E;
+  --color-chart--gray-3: #474747;
+  --color-chart--gray-4: #5C5C5C;
+  --color-chart--gray-5: #707070;
+  --color-chart--gray-6: #858585;
+  --color-chart--gray-7: #999999;
+  --color-chart--gray-8: #ADADAD;
+  --color-chart--gray-9: #C2C2C2;
+  --color-chart--gray-10: #D6D6D6;
+  --color-chart--gray-11: #E5E5E5;
+  --color-chart--gray-12: #F5F5F5;
+
+  // Neutron colors
+  --color-chart--neutron-1: #101216;
+  --color-chart--neutron-2: #2A2F38;
+  --color-chart--neutron-3: #434851;
+  --color-chart--neutron-4: #585D66;
+  --color-chart--neutron-5: #6C717A;
+  --color-chart--neutron-6: #81868F;
+  --color-chart--neutron-7: #959AA3;
+  --color-chart--neutron-8: #A9ADB5;
+  --color-chart--neutron-9: #BFC2C8;
+  --color-chart--neutron-10: #D4D6DA;
+  --color-chart--neutron-11: #E4E5E8;
+  --color-chart--neutron-12: #F5F5F6;
+
+  // Rainbow colors
+  --color-chart--rainbow-amber: #F4C845;
+  --color-chart--rainbow-amber-dark: #C5A23A;
+  --color-chart--rainbow-amber-half: rgba(244, 200, 69, 0.50);
+  --color-chart--rainbow-amber-pale: rgba(244, 200, 69, 0.08);
+
+  --color-chart--rainbow-orange: #F4984D;
+  --color-chart--rainbow-orange-dark: #C67C40;
+  --color-chart--rainbow-orange-half: rgba(244, 152, 77, 0.50);
+  --color-chart--rainbow-orange-pale: rgba(244, 152, 77, 0.08);
+
+  --color-chart--rainbow-rose: #F25154;
+  --color-chart--rainbow-rose-dark: #C34346;
+  --color-chart--rainbow-rose-half: rgba(242, 81, 84, 0.50);
+  --color-chart--rainbow-rose-pale: rgba(242, 81, 84, 0.08);
+
+  --color-chart--rainbow-pink: #F265DA;
+  --color-chart--rainbow-pink-dark: #C453B1;
+  --color-chart--rainbow-pink-half: rgba(242, 101, 218, 0.56);
+  --color-chart--rainbow-pink-pale: rgba(242, 101, 218, 0.08);
+
+  --color-chart--rainbow-purple: #A565F2;
+  --color-chart--rainbow-purple-dark: #8653C4;
+  --color-chart--rainbow-purple-half: rgba(165, 101, 242, 0.56);
+  --color-chart--rainbow-purple-pale: rgba(165, 101, 242, 0.08);
+
+  --color-chart--rainbow-blue: #6592F2;
+  --color-chart--rainbow-blue-dark: #5377C4;
+  --color-chart--rainbow-blue-half: rgba(101, 146, 242, 0.56);
+  --color-chart--rainbow-blue-pale: rgba(101, 146, 242, 0.08);
+
+  --color-chart--rainbow-cyan: #65C8F2;
+  --color-chart--rainbow-cyan-dark: #53A2C4;
+  --color-chart--rainbow-cyan-half: rgba(101, 200, 242, 0.56);
+  --color-chart--rainbow-cyan-pale: rgba(101, 200, 242, 0.08);
+
+  --color-chart--rainbow-emerald: #41B467;
+  --color-chart--rainbow-emerald-dark: #369255;
+  --color-chart--rainbow-emerald-half: rgba(65, 180, 103, 0.56);
+  --color-chart--rainbow-emerald-pale: rgba(65, 180, 103, 0.08);
+}
+
+
+@mixin light-theme {
+  // Text colors for light theme
+  --color--text-prime: var(--color-chart--neutron-1);
+  --color--text-secondary: var(--color-chart--neutron-4);
+  --color--text-negative: var(--color-chart--neutron-8);
+  --color--text-disabled: var(--color-chart--neutron-10);
+
+  // Background colors for light theme
+  --color--bg-prime: var(--color-chart--base-white);
+  --color--bg-secondary: var(--color-chart--neutron-12);
+  --color--bg-secondary-trans: var(--color-chart--trans-12);
+  --color--bg-hover: var(--color-chart--trans-12);
+
+  // Border colors for light theme
+  --color--border-prime: var(--color-chart--neutron-11);
+  --color--border-prime-trans: var(--color-chart--trans-11);
+  --color--border-pale: var(--color-chart--neutron-12);
+  --color--border-pale-trans: var(--color-chart--trans-12);
+  --color--border-darken: var(--color-chart--neutron-10);
+  --color--border-darken-trans: var(--color-chart--trans-10);
+  --color--border-secondary-trans: var(--color-chart--trans-12);
+  
+
+  // Semantic colors for light theme
+  --color--semantic-active: var(--color-chart--rainbow-blue);
+  --color--semantic-active-dark: var(--color-chart--rainbow-blue-dark);
+  --color--semantic-active-half: var(--color-chart--rainbow-blue-half);
+  --color--semantic-active-pale: var(--color-chart--rainbow-blue-pale);
+  --color--semantic-success: var(--color-chart--rainbow-emerald);
+  --color--semantic-success-dark: var(--color-chart--rainbow-emerald-dark);
+  --color--semantic-success-half: var(--color-chart--rainbow-emerald-half);
+  --color--semantic-success-pale: var(--color-chart--rainbow-emerald-pale);
+  --color--semantic-warning: var(--color-chart--rainbow-orange);
+  --color--semantic-warning-dark: var(--color-chart--rainbow-orange-dark);
+  --color--semantic-warning-half: var(--color-chart--rainbow-orange-half);
+  --color--semantic-warning-pale: var(--color-chart--rainbow-orange-pale);
+  --color--semantic-error: var(--color-chart--rainbow-rose);
+  --color--semantic-error-dark: var(--color-chart--rainbow-rose-dark);
+  --color--semantic-error-half: var(--color-chart--rainbow-rose-half);
+  --color--semantic-error-pale: var(--color-chart--rainbow-rose-pale);
+
+  // Shadow colors for light theme
+  --color--shadow-pop-up: rgba(0, 0, 0, 0.08);
+}
+
+@mixin dark-theme {
+  // Text colors for dark theme
+  --color--text-prime: var(--color-chart--base-white);
+  --color--text-secondary: var(--color-chart--neutron-8);
+  --color--text-negative: var(--color-chart--neutron-5);
+  --color--text-disabled: var(--color-chart--neutron-3);
+
+  // Background colors for dark theme
+  --color--bg-prime: var(--color-chart--base-black);
+  --color--bg-secondary: var(--color-chart--neutron-1);
+  --color--bg-secondary-trans: var(--color-chart--trans-inverse-11);
+  --color--bg-hover: var(--color-chart--trans-inverse-12);
+
+  // Border colors for dark theme
+  --color--border-prime: var(--color-chart--neutron-2);
+  --color--border-prime-trans: var(--color-chart--trans-inverse-11);
+  --color--border-pale: var(--color-chart--neutron-1);
+  --color--border-pale-trans: var(--color-chart--trans-inverse-12);
+  --color--border-darken: var(--color-chart--neutron-3);
+  --color--border-darken-trans: var(--color-chart--trans-inverse-10);
+  --color--border-secondary-trans: var(--color-chart--trans-inverse-11);
+  
+
+  // Semantic colors for dark theme (same as light theme for rainbow colors)
+  --color--semantic-active: var(--color-chart--rainbow-blue);
+  --color--semantic-active-dark: var(--color-chart--rainbow-blue-dark);
+  --color--semantic-active-half: var(--color-chart--rainbow-blue-half);
+  --color--semantic-active-pale: var(--color-chart--rainbow-blue-pale);
+  --color--semantic-success: var(--color-chart--rainbow-emerald);
+  --color--semantic-success-dark: var(--color-chart--rainbow-emerald-dark);
+  --color--semantic-success-half: var(--color-chart--rainbow-emerald-half);
+  --color--semantic-success-pale: var(--color-chart--rainbow-emerald-pale);
+  --color--semantic-warning: var(--color-chart--rainbow-orange);
+  --color--semantic-warning-dark: var(--color-chart--rainbow-orange-dark);
+  --color--semantic-warning-half: var(--color-chart--rainbow-orange-half);
+  --color--semantic-warning-pale: var(--color-chart--rainbow-orange-pale);
+  --color--semantic-error: var(--color-chart--rainbow-rose);
+  --color--semantic-error-dark: var(--color-chart--rainbow-rose-dark);
+  --color--semantic-error-half: var(--color-chart--rainbow-rose-half);
+  --color--semantic-error-pale: var(--color-chart--rainbow-rose-pale);
+
+  // Shadow colors for dark theme
+  --color--shadow-pop-up: rgba(0, 0, 0, 0.32);
+}
+
+// 其次，通过 SCSS 的 `@include` 将它们分别引用到 light mode 以及 dark mode 中：
+
+:root {
+  @include light-theme;
+}
+
+:root[data-theme="dark"] {
+  @include dark-theme;
+}
+
+// 为了安全起见，我们增加一组 system theme detection 设置：
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    @include light-theme;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-theme;
+  }
+}
+
+html, body {
+  background-color: var(--color--bg-prime);
+  color: var(--color--text-prime);
+}

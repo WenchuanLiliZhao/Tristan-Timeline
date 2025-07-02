@@ -1,0 +1,61 @@
+.group-by-selector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px; /* TimelineConst.sidebarWidth */
+  height: 100px; /* TimelineConstCalc.rulerHeight */
+  z-index: 200; /* 高于所有其他 timeline 元素 */
+  background-color: var(--color--bg-secondary);
+  border-right: 2px solid var(--color--border-prime);
+  pointer-events: auto; /* 确保可以交互 */
+
+  .group-by-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    height: 100%;
+    padding: 8px;
+    box-shadow: 0 1px 0 0 var(--color--border-prime);
+
+    .group-by-label {
+      font-size: 10px;
+      color: var(--color--text-negative);
+      line-height: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 0 8px;
+    }
+
+    .group-by-dropdown {
+      width: 100%;
+      padding: 4px 8px;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--color--bg-hover);
+      }
+
+      .group-by-value-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        align-items: center;
+        justify-content: space-between;
+
+        .group-by-value {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--color--text-secondary);
+          line-height: 20px;
+        }
+
+        .group-by-value-icon {
+          font-size: 18px;
+          color: var(--color--text-secondary);
+          line-height: 20px;
+        }
+      }
+    }
+  }
+} 

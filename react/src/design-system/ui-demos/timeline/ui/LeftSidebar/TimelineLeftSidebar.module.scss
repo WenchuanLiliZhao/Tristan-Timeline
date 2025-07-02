@@ -1,0 +1,106 @@
+.timeline-sidebar {
+  position: relative;
+  background-color: var(--color--bg-secondary);
+  border-right: 2px solid var(--color--border-prime);
+  display: flex;
+  flex-direction: column;
+  /* width: 240px; */ /* 移除固定宽度，由 TypeScript 常量控制 */
+  overflow: visible;
+  
+  z-index: var(--z-index-nav);
+
+  .timeline-sidebar-ruler-space {
+    // border-bottom: 1px solid var(--color--border-prime);
+    position: sticky;
+    top: 0;
+
+    .group-by-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      justify-content: center;
+      height: 100%;
+      padding: 8px;
+      // border-bottom: 1px solid var(--color--border-prime);
+      box-shadow: 0 1px 0 0 var(--color--border-prime);
+
+      .group-by-label {
+        font-size: 10px;
+        color: var(--color--text-negative);
+        line-height: 12px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 0 8px;
+      }
+
+      .group-by-dropdown {
+        width: 100%;
+        padding: 4px 8px;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: var(--color--bg-hover);
+        }
+
+        .group-by-value-container {
+          display: flex;
+          flex-direction: row;
+          gap: 2px;
+          align-items: center;
+          justify-content: space-between;
+  
+          .group-by-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color--text-secondary);
+            line-height: 20px;
+          }
+  
+          .group-by-value-icon {
+            font-size: 18px;
+            color: var(--color--text-secondary);
+            line-height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .timeline-sidebar-groups {
+    display: flex;
+    flex-direction: column;
+
+    .timeline-sidebar-group {
+      position: relative;
+      border-bottom: 1px solid var(--color--border-prime);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 16px;
+
+      .timeline-sidebar-group-title-container {
+        padding: 16px 0;
+        .timeline-sidebar-group-title {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--color--text-prime);
+          line-height: 18px;
+
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+
+        .timeline-sidebar-group-properties {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.property-field-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.property-field-column-label {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+  color: var(--color--text-secondary);
+  text-transform: uppercase;
+}
+
+.property-field-column-content {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color--text-primary);
+}

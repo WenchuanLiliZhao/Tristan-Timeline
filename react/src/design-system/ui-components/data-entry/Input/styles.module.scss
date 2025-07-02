@@ -1,0 +1,337 @@
+
+.tristan-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: text;
+  
+  // Size variants
+  &--tiny {
+    height: 24px;
+    padding: 0 6px;
+    gap: 6px;
+    font-size: 12px;
+    
+    .tristan-input__prefix-icon,
+    .tristan-input__suffix-icon,
+    .tristan-input__clear-button,
+    .tristan-input__button-indicator {
+      .material-icons {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  &--small {
+    height: 32px;
+    padding: 0 8px;
+    gap: 8px;
+    font-size: 14px;
+    
+    .tristan-input__prefix-icon,
+    .tristan-input__suffix-icon,
+    .tristan-input__clear-button,
+    .tristan-input__button-indicator {
+      .material-icons {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  &--medium {
+    height: 40px;
+    padding: 0 12px;
+    gap: 8px;
+    font-size: 14px;
+    
+    .tristan-input__prefix-icon,
+    .tristan-input__suffix-icon,
+    .tristan-input__clear-button,
+    .tristan-input__button-indicator {
+      .material-icons {
+        font-size: 18px;
+      }
+    }
+  }
+  
+  &--large {
+    height: 48px;
+    padding: 0 16px;
+    gap: 12px;
+    font-size: 16px;
+    
+    .tristan-input__prefix-icon,
+    .tristan-input__suffix-icon,
+    .tristan-input__clear-button,
+    .tristan-input__button-indicator {
+      .material-icons {
+        font-size: 20px;
+      }
+    }
+  }
+  
+  // Variant styles
+  &--outlined {
+    background-color: var(--color--bg-prime);
+    border: 1px solid var(--color--border-prime);
+    
+    &:hover:not(.tristan-input--disabled) {
+      border-color: var(--color--border-secondary);
+    }
+    
+    &:focus-within {
+      border-color: var(--color--semantic-active);
+      box-shadow: 0 0 0 2px var(--color--semantic-active-pale);
+    }
+  }
+  
+  &--filled {
+    background-color: var(--color--bg-secondary);
+    border: 1px solid transparent;
+    
+    &:hover:not(.tristan-input--disabled) {
+      background-color: var(--color--bg-tertiary);
+    }
+    
+    &:focus-within {
+      background-color: var(--color--bg-prime);
+      border-color: var(--color--semantic-active);
+      box-shadow: 0 0 0 2px var(--color--semantic-active-pale);
+    }
+  }
+  
+  &--ghost {
+    background-color: transparent;
+    border: 1px solid transparent;
+    
+    &:hover:not(.tristan-input--disabled) {
+      background-color: var(--color--bg-secondary);
+    }
+    
+    &:focus-within {
+      background-color: var(--color--bg-prime);
+      border-color: var(--color--border-prime);
+    }
+  }
+  
+  // Button mode
+  &--button-mode {
+    cursor: pointer;
+    
+    .tristan-input__input {
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      
+      &::placeholder {
+        color: var(--color--text-prime);
+      }
+    }
+  }
+  
+  // Disabled state
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    
+    .tristan-input__input,
+    .tristan-input__prefix-icon,
+    .tristan-input__suffix-icon,
+    .tristan-input__clear-button,
+    .tristan-input__button-indicator {
+      cursor: not-allowed;
+    }
+  }
+  
+  // Has value state for styling
+  &--has-value {
+    // Add any styles when there's content
+  }
+}
+
+// Prefix icon
+.tristan-input__prefix-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  
+  &:hover:not(:disabled) {
+    color: var(--color--text-prime);
+    background-color: var(--color--bg-tertiary);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color--semantic-active);
+    outline-offset: 1px;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Suffix icon
+.tristan-input__suffix-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  
+  &:hover:not(:disabled) {
+    color: var(--color--text-prime);
+    background-color: var(--color--bg-tertiary);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color--semantic-active);
+    outline-offset: 1px;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Input field
+.tristan-input__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color--text-prime);
+  font-size: inherit;
+  font-family: inherit;
+  
+  &::placeholder {
+    color: var(--color--text-tertiary);
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
+  &[readonly] {
+    cursor: pointer;
+  }
+}
+
+// Clear button
+.tristan-input__clear-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 2px;
+  color: var(--color--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScale 0.2s ease forwards;
+  
+  &:hover:not(:disabled) {
+    color: var(--color--text-prime);
+    background-color: var(--color--bg-tertiary);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color--semantic-active);
+    outline-offset: 1px;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Button mode indicator
+.tristan-input__button-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color--text-secondary);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  
+  .tristan-input--button-mode:hover:not(.tristan-input--disabled) & {
+    color: var(--color--text-prime);
+  }
+}
+
+// Hover box
+.hover-box {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--color--bg-tertiary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+// Animations
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Focus state management
+.tristan-input:focus-within {
+  .hover-box {
+    opacity: 0 !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .tristan-input {
+    &--outlined {
+      border-width: 2px;
+    }
+    
+    &:focus-within {
+      box-shadow: 0 0 0 3px var(--color--semantic-active-pale);
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .tristan-input,
+  .tristan-input__prefix-icon,
+  .tristan-input__suffix-icon,
+  .tristan-input__clear-button,
+  .tristan-input__button-indicator,
+  .hover-box {
+    transition: none;
+  }
+  
+  .tristan-input__clear-button {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+} 

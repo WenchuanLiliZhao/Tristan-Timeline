@@ -85,6 +85,6 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "tristan-ui": "^0.4.25"
+    "tristan-ui": "^0.4.28"
   }
 }

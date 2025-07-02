@@ -26,7 +26,7 @@ export const GroupBySelector: React.FC<GroupBySelectorProps> = ({
             <Button
               size="medium"
               widthMode="full width"
-              decoIcon={option.label === groupBy ? "check" : undefined}
+              prefixIcon={option.label === groupBy ? "check" : undefined}
               variant={option.label === groupBy ? "filled" : "ghost"}
               semantic={option.label === groupBy ? "active" : "default"}
             >
@@ -69,7 +69,7 @@ export const GroupBySelector: React.FC<GroupBySelectorProps> = ({
           groups={createGroupByOptions()}
           position="right-start"
           onItemClick={handleGroupByChange}
-          width={160}
+          // width={160}
         />
       </div>
     </div>

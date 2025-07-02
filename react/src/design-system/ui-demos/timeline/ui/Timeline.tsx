@@ -160,11 +160,18 @@ function useTimelineGroupBy<T = Record<string, unknown>>(
 ) {
   // 管理当前分组字段
   const [currentGroupBy, setCurrentGroupBy] = useState<keyof (BaseTimelineItemType & T) | undefined>(() => {
+    // 优先使用 fallbackGroupBy（包含 URL 中的值）
+    if (fallbackGroupBy) {
+      return fallbackGroupBy;
+    }
+    
+    // 如果没有 fallbackGroupBy，则使用 groupByOptions 的默认值
     if (groupByOptions && groupByOptions.length > 0) {
       const defaultOption = groupByOptions.find((option) => option.setAsDefault);
       return defaultOption ? defaultOption.field : groupByOptions[0].field;
     }
-    return fallbackGroupBy;
+    
+    return undefined;
   });
 
   return {

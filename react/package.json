@@ -1,6 +1,6 @@
 {
   "name": "tristan-timeline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A modern React timeline component library extracted from tristan-ui",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -39,7 +39,7 @@
   "license": "MIT",
   "homepage": "https://github.com/wenchuanlilizhao/tristan-timeline#readme",
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git+https://github.com/wenchuanlilizhao/tristan-timeline.git"
   },
   "bugs": {

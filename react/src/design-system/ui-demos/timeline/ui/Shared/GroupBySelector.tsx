@@ -34,6 +34,7 @@ export const GroupBySelector: React.FC<GroupBySelectorProps> = ({
             </Button>
           ),
           value: option.value,
+          interactive: true, // Use optimized interactive mode
         })),
       },
     ];

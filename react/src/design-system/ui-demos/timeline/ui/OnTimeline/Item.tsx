@@ -6,8 +6,8 @@ import {
   type FieldDisplayConfig,
 } from "../../types";
 import { TimelineConst } from "../_constants";
-import { Icon, ProgressCircle, Tag } from "../../../../ui-components";
-import type { Color } from "../../../../ui-components/types";
+import { Icon, ProgressCircle, Tag } from "tristan-ui";
+import type { Color } from "tristan-ui";
 
 interface TimelineItemProps {
   item: TimelineItemType;

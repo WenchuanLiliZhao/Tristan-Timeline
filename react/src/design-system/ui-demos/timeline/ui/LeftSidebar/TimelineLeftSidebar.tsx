@@ -7,7 +7,7 @@ import {
   RichTooltip,
   RichTooltipItem,
   PropertyDistributionBar,
-} from "../../../../ui-components";
+} from "tristan-ui";
 
 export interface GroupPlacement<T = Record<string, unknown>> {
   groupTitle: string;

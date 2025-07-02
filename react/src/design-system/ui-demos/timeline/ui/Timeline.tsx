@@ -62,14 +62,14 @@ import {
 import { parseTimelineUrlParams } from "../utils/urlParams";
 import styles from "./Timeline.module.scss";
 import { TimelineConst } from "./_constants";
-import { FloatingButtonGroup } from "../../../ui-components/navigation/FloatingButtonGroup";
+import { FloatingButtonGroup } from "tristan-ui";
 import {
   Button,
-} from "../../../ui-components/general/Button/index";
+} from "tristan-ui";
 import { TodayButton } from "./Shared/TodayButton";
-import { RightSidebar } from "../../../ui-components";
+import { RightSidebar } from "tristan-ui";
 import { IssueDetails } from "./IssueDetails";
-import { useFullscreen } from "../../../ui-components/shared/useFullscreen";
+import { useFullscreen } from "tristan-ui";
 
 // 内部函数：创建 zoom controls
 function createZoomControls(

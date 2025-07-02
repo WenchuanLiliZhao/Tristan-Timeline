@@ -5,7 +5,7 @@ import {
   RichTooltipItem, 
   formatDate, 
   type Position 
-} from "../../../../ui-components";
+} from "tristan-ui";
 
 interface TimelinePointerProps {
   year?: number;

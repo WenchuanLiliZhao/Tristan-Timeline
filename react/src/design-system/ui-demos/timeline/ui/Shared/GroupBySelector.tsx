@@ -1,6 +1,6 @@
 import React from "react";
-import { Dropdown, Button, Icon } from "../../../../ui-components";
-import { type CascaderGroupProps } from "../../../../ui-components";
+import { Dropdown, Button, Icon } from "tristan-ui";
+import { type CascaderGroupProps } from "tristan-ui";
 import styles from "./GroupBySelector.module.scss";
 
 interface GroupBySelectorProps {

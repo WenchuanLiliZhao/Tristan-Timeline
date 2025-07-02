@@ -26,8 +26,7 @@
  */
 
 import React from "react";
-import type { RainbowColorVar, SemanticColorVar } from "../../../styles/color";
-import { getSemanticColor, grayColors } from "../../../styles/color";
+import { getSemanticColor, grayColors, type RainbowColorVar, type SemanticColorVar } from "tristan-ui";
 
 /**
  * Timeline 颜色类型 - 支持以下三种颜色使用方式：

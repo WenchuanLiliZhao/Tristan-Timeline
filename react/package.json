@@ -1,7 +1,7 @@
 {
-  "name": "tristan-ui",
-  "version": "0.4.25",
-  "description": "A modern React component library and design system",
+  "name": "tristan-ui-timeline",
+  "version": "0.1.0",
+  "description": "A modern React timeline component library extracted from tristan-ui",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -11,9 +11,9 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js"
     },
-    "./dist/tristan-ui.css": "./dist/tristan-ui.css",
-    "./dist/style.css": "./dist/tristan-ui.css",
-    "./style.css": "./dist/tristan-ui.css",
+    "./dist/tristan-ui-timeline.css": "./dist/tristan-ui-timeline.css",
+    "./dist/style.css": "./dist/tristan-ui-timeline.css",
+    "./style.css": "./dist/tristan-ui-timeline.css",
     "./styles": "./src/styles/_app.scss",
     "./styles/*": "./src/styles/*"
   },
@@ -28,7 +28,7 @@
   ],
   "keywords": [
     "react",
-    "design-system",
+    "timeline",
     "components",
     "ui",
     "typescript",
@@ -37,13 +37,13 @@
   ],
   "author": "wenchuanlilizhao",
   "license": "MIT",
-  "homepage": "https://github.com/wenchuanlilizhao/tristan-ui#readme",
+  "homepage": "https://github.com/wenchuanlilizhao/tristan-ui-timeline#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wenchuanlilizhao/tristan-ui.git"
+    "url": "git+https://github.com/wenchuanlilizhao/tristan-ui-timeline.git"
   },
   "bugs": {
-    "url": "https://github.com/wenchuanlilizhao/tristan-ui/issues"
+    "url": "https://github.com/wenchuanlilizhao/tristan-ui-timeline/issues"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -83,5 +83,8 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "tristan-ui": "^0.4.25"
   }
 }

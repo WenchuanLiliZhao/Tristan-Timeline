@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ProgressCircle } from '../../design-system/ui-components/data-display';
+import { ProgressCircle } from 'tristan-ui';
 
 export const Element: React.FC = () => {
   const [animatedProgress, setAnimatedProgress] = useState(0);

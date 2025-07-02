@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DemoPages } from "./pages";
+import { DebugPages } from "./pages/debug-pages";
+import "tristan-ui/style.css"
 
 function App() {
 
@@ -11,7 +13,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={DemoPages.Home.content} />
+        <Route path="/" element={DebugPages.Timeline.content} />
         <Route path="*" element={DemoPages.NotFound.content} />
 
         {Object.values(DemoPages).map((page) => (

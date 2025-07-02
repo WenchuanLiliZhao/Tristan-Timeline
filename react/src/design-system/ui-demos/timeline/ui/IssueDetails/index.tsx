@@ -10,7 +10,7 @@ import {
   ProgressField,
   TagField,
   PropertyFieldsTable,
-} from "../../../../ui-components/data-display";
+} from "tristan-ui";
 
 
 interface IssueDetailsProps<T = Record<string, unknown>> {

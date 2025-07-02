@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RightSidebar, TristanLayoutContent } from "../../../ui-components";
+import { RightSidebar, TristanLayoutContent } from "tristan-ui";
 import { Timeline } from "./Timeline";
 import { IssueDetails } from "./IssueDetails";
 import type { TimelineProps, TimelineItemType } from "../types";

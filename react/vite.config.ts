@@ -16,16 +16,18 @@ export default defineConfig(({ mode }) => {
       build: {
         lib: {
           entry: './src/index.ts',
-          name: 'Tristan',
+          name: 'TristanTimeline',
           formats: ['es', 'umd'],
           fileName: (format) => format === 'es' ? 'index.esm.js' : 'index.js',
         },
         rollupOptions: {
-          external: ['react', 'react-dom'],
+          external: ['react', 'react-dom', 'react-router-dom', 'tristan-ui'],
           output: {
             globals: {
               react: 'React',
               'react-dom': 'ReactDOM',
+              'react-router-dom': 'ReactRouterDOM',
+              'tristan-ui': 'TristanUI',
             },
             assetFileNames: (assetInfo) => {
               const extType = assetInfo.name?.split('.').at(1);
@@ -34,7 +36,7 @@ export default defineConfig(({ mode }) => {
               }
               // CSS 文件输出到根目录
               if (/css/.test(extType ?? '')) {
-                return `tristan-ui.[ext]`;
+                return `tristan-timeline.[ext]`;
               }
               return `assets/[name].[ext]`;
             },

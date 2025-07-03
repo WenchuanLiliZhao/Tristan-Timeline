@@ -14,12 +14,7 @@ import {
   riskLevel,
 } from "./example-data";
 import { Button, getRainbowColor } from "tristan-ui";
-import {
-  NavTitle,
-  TopNav,
-  TristanLayout,
-  TristanLogo,
-} from "tristan-ui";
+import { NavTitle, TopNav, TristanLayout, TristanLogo } from "tristan-ui";
 import { IssueDetailsConfigBuilder } from "../../../design-system/ui-demos/timeline/issueDetailsConfig";
 
 export function Element(): React.ReactElement {
@@ -31,6 +26,8 @@ export function Element(): React.ReactElement {
     const targetDate = new Date(dateString);
     timelineRef.current?.scrollToDate(targetDate);
   };
+
+  // 处理 TimePicker 变化的函数 - 只更新本地状态，不触发筛
 
   // 🎯 定义缩放级别配置
   const zoomLevels = [
@@ -109,7 +106,7 @@ export function Element(): React.ReactElement {
       //     color: getSemanticColor("success"),
       //   },
       // ]
-      
+
       // 🎨 自定义 tooltip 配置示例（取消注释以使用）：
       // tooltip: [
       //   {
@@ -136,79 +133,82 @@ export function Element(): React.ReactElement {
     }),
   ];
 
-
-  {/* 🎯 IssueDetails 详情配置示例:
+  {
+    /* 🎯 IssueDetails 详情配置示例:
       你可以为每个属性定义自定义标签 (label)，让界面更加友好和本地化。
       标签优先级：自定义标签 > 默认标签 > 属性名
       详细说明请参考：CUSTOM_LABELS_GUIDE.md
-  */}
+  */
+  }
   const issueDetailsConfig = IssueDetailsConfigBuilder.create<ProjectDataType>()
     .setTitle("Project Details") // 自定义sidebar标题
     .setPropertyOrder([
-      { 
-        property: "projectKey", 
+      {
+        property: "projectKey",
         displayType: "text",
-        label: "项目编号" // 🏷️ 自定义标签：在UI中显示为"项目编号"而不是"Project Key"
+        label: "项目编号", // 🏷️ 自定义标签：在UI中显示为"项目编号"而不是"Project Key"
       },
-      { 
-        property: "name", 
+      {
+        property: "name",
         displayType: "text",
-        label: "项目名称" // 🏷️ 自定义标签：在UI中显示为"项目名称"而不是"Name"
+        label: "项目名称", // 🏷️ 自定义标签：在UI中显示为"项目名称"而不是"Name"
       },
-      { 
-        property: "riskLevel", 
-        displayType: "tag", 
+      {
+        property: "riskLevel",
+        displayType: "tag",
         valueMapping: riskLevel,
-        label: "风险等级" // 🏷️ 自定义标签：在UI中显示为"风险等级"而不是"Risk Level"
+        label: "风险等级", // 🏷️ 自定义标签：在UI中显示为"风险等级"而不是"Risk Level"
       },
-      
-      { 
-        property: "status", 
-        displayType: "tag", 
+
+      {
+        property: "status",
+        displayType: "tag",
         valueMapping: status,
-        label: "项目状态" // 🏷️ 自定义标签：在UI中显示为"项目状态"而不是"Status"
+        label: "项目状态", // 🏷️ 自定义标签：在UI中显示为"项目状态"而不是"Status"
       },
-      { 
-        property: "priority", 
-        displayType: "tag", 
+      {
+        property: "priority",
+        displayType: "tag",
         valueMapping: priority,
-        label: "优先级" // 🏷️ 自定义标签：在UI中显示为"优先级"而不是"Priority"
+        label: "优先级", // 🏷️ 自定义标签：在UI中显示为"优先级"而不是"Priority"
       },
-      { 
-        property: "progress", 
+      {
+        property: "progress",
         displayType: "progress",
-        label: "完成进度" // 🏷️ 自定义标签：在UI中显示为"完成进度"而不是"Progress"
+        label: "完成进度", // 🏷️ 自定义标签：在UI中显示为"完成进度"而不是"Progress"
       },
-      { 
-        property: "team", 
-        displayType: "text", 
-        label: "负责团队", // 🏷️ 自定义标签：在UI中显示为"负责团队"而不是"Team"
-        displayOptions: { 
-          color: "var(--color--semantic-active)",
-          fontWeight: "medium" 
-        }
-      },
-      { 
-        property: "category", 
+      {
+        property: "team",
         displayType: "text",
-        label: "项目类别" // 🏷️ 自定义标签：在UI中显示为"项目类别"而不是"Category"
+        label: "负责团队", // 🏷️ 自定义标签：在UI中显示为"负责团队"而不是"Team"
+        displayOptions: {
+          color: "var(--color--semantic-active)",
+          fontWeight: "medium",
+        },
       },
-      { 
-        property: "startDate", 
+      {
+        property: "category",
+        displayType: "text",
+        label: "项目类别", // 🏷️ 自定义标签：在UI中显示为"项目类别"而不是"Category"
+      },
+      {
+        property: "startDate",
         displayType: "date",
         label: "开始日期", // 🏷️ 自定义标签：在UI中显示为"开始日期"而不是"Start Date"
-        displayOptions: { dateFormat: "medium" }
+        displayOptions: { dateFormat: "medium" },
       },
-      { 
-        property: "endDate", 
+      {
+        property: "endDate",
         displayType: "date",
         label: "结束日期", // 🏷️ 自定义标签：在UI中显示为"结束日期"而不是"End Date"
-        displayOptions: { dateFormat: "medium" }
+        displayOptions: { dateFormat: "medium" },
       },
     ])
     .build();
 
-  {/* 🎯 可选配置示例：注释掉上面的配置，取消注释下面这行，体验无 issue details 的效果 */}
+  {
+    /* 🎯 可选配置示例：注释掉上面的配置，取消注释下面这行，体验无 issue details 的效果 */
+  }
   // const issueDetailsConfig = undefined;
 
   return (
@@ -220,16 +220,19 @@ export function Element(): React.ReactElement {
             <NavTitle title="Roadmap of lululemon Initiatives" />,
           ]}
           right={[
-            <Button onClick={() => handleScrollToDate('2025-08-30')}>
+            <Button onClick={() => handleScrollToDate("2025-08-30")}>
               Scroll to 2025-08-30
-            </Button>
+            </Button>,
           ]}
         />
       }
       main={
         <TimelineView
           ref={timelineRef}
-          // fetchByTimeInterval={[new Date("2025-01-01"), new Date("2025-12-30")]}
+          // fetchByTimeInterval={[
+          //   new Date("2025-01-01"),
+          //   new Date("2025-12-30")
+          // ]}
           init={itemDisplayConfigSimple}
           inputData={ExampleData}
           groupByOptions={groupByOptions}

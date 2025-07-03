@@ -21,6 +21,7 @@ interface TimelineGroupProps {
   groupGap: number;
   displayConfig?: TimelineItemDisplayConfig;
   onIssueClick?: (issue: TimelineItemType) => void;
+  selectedItemId?: string | null;
 }
 
 export const TimelineGroup: React.FC<TimelineGroupProps> = React.memo(({
@@ -33,6 +34,7 @@ export const TimelineGroup: React.FC<TimelineGroupProps> = React.memo(({
   groupGap,
   displayConfig,
   onIssueClick,
+  selectedItemId,
 }) => {
   // 🚀 性能优化：缓存高度计算
   const finalHeight = useMemo(() => {
@@ -76,12 +78,13 @@ export const TimelineGroup: React.FC<TimelineGroupProps> = React.memo(({
             column={placement.column}
             displayConfig={displayConfig}
             onIssueClick={onIssueClick}
+            isFocused={selectedItemId === placement.item.id}
           />
         );
       }
       return null;
     }).filter(Boolean);
-  }, [groupData.placements, year, monthIndex, dayIndex, dayWidth, cellHeight, displayConfig, onIssueClick]);
+  }, [groupData.placements, year, monthIndex, dayIndex, dayWidth, cellHeight, displayConfig, onIssueClick, selectedItemId]);
 
   return (
     <div
@@ -105,6 +108,7 @@ export const TimelineGroup: React.FC<TimelineGroupProps> = React.memo(({
     prevProps.groupGap === nextProps.groupGap &&
     prevProps.groupData === nextProps.groupData &&
     prevProps.displayConfig === nextProps.displayConfig &&
-    prevProps.onIssueClick === nextProps.onIssueClick
+    prevProps.onIssueClick === nextProps.onIssueClick &&
+    prevProps.selectedItemId === nextProps.selectedItemId
   );
 }); 

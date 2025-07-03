@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback, forwardRef, useImperativeHandle } from "react";
 import { RightSidebar, TristanLayoutContent } from "tristan-ui";
-import { Timeline } from "./Timeline";
+import { Timeline, type TimelineRef } from "./Timeline";
 import { IssueDetails } from "./IssueDetails";
 import type { TimelineProps, TimelineItemType } from "../types";
 import { useTimelineUrlParams } from "../hooks/useTimelineUrlParams";
 
+// TimelineView 组件的公共方法接口
+export interface TimelineViewRef {
+  scrollToDate: (date: Date) => void;
+}
+
 // Reusable Timeline view with integrated right sidebar displaying issue details
-export function TimelineView<T = Record<string, unknown>>(props: TimelineProps<T>): React.ReactElement {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TimelineView = forwardRef<TimelineViewRef, TimelineProps<any>>(function TimelineView<T = Record<string, unknown>>(props: TimelineProps<T>, ref: React.Ref<TimelineViewRef>) {
   const [selectedItem, setSelectedItem] = useState<TimelineItemType<T> | null>(null);
+  const timelineRef = useRef<TimelineRef>(null);
   
   // URL 参数管理
   const urlParamsHook = useTimelineUrlParams(props.urlParams);
+  
+  // 滚动到日期的回调函数
+  const handleScrollToDate = useCallback((date: Date) => {
+    timelineRef.current?.scrollToDate(date);
+  }, []);
+
+  // 暴露组件的公共方法
+  useImperativeHandle(ref, () => ({
+    scrollToDate: handleScrollToDate,
+  }), [handleScrollToDate]);
 
   // When a timeline item is clicked, update local state and forward the event if provided
   const handleItemClick = (item: TimelineItemType<T>) => {
@@ -42,7 +59,8 @@ export function TimelineView<T = Record<string, unknown>>(props: TimelineProps<T
   return (
     <TristanLayoutContent
       main={
-        <Timeline<T>
+        <Timeline
+          ref={timelineRef}
           {...props}
           groupBy={effectiveGroupBy}
           onItemClick={handleItemClick}
@@ -59,10 +77,11 @@ export function TimelineView<T = Record<string, unknown>>(props: TimelineProps<T
             <IssueDetails<T>
               item={selectedItem}
               config={props.issueDetailsConfig}
+              onScrollToDate={handleScrollToDate}
             />
           )}
         </RightSidebar>
       }
     />
   );
-}
+});

@@ -17,6 +17,7 @@ interface TimelineItemProps {
   column: number;
   onIssueClick?: (issue: TimelineItemType) => void;
   displayConfig?: TimelineItemDisplayConfig;
+  isFocused?: boolean;
 }
 
 // 渲染图形信息区域的字段 - 使用CSS变量优化
@@ -143,6 +144,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
   column,
   onIssueClick,
   displayConfig,
+  isFocused,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -165,7 +167,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
     <div className={styles["timeline-item"]}>
       <div
         ref={containerRef}
-        className={styles["timeline-item-container"]}
+        className={`${styles["timeline-item-container"]} ${isFocused ? styles["timeline-item-container--focused"] : ""}`}
         style={{
           height: cellHeight - TimelineConst.itemVPadding * 2,
           width:

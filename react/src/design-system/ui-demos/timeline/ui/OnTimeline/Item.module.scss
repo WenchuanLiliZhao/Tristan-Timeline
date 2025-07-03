@@ -48,11 +48,9 @@
       border-color: var(--color--semantic-active-half);
     }
     
-    &:focus {
+    &--focused {
       border-color: var(--color--semantic-active);
-
-      // outline: 1px solid var(--color--semantic-active);
-      // outline-offset: 2px;
+      box-shadow: 0 0 0 2px var(--color--semantic-active-half);
     }
     
     .timeline-item-graphic-info {

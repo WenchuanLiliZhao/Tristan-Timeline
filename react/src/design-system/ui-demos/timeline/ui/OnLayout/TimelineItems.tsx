@@ -20,6 +20,7 @@ interface TimelineItemsProps<T = Record<string, unknown>> {
   groupPlacements: GroupPlacement<T>[];
   displayConfig?: TimelineItemDisplayConfig;
   onIssueClick?: (issue: TimelineItemType) => void;
+  selectedItemId?: string | null;
 }
 
 // 🚀 优化的年份渲染组件
@@ -34,6 +35,7 @@ const YearRenderer = React.memo<{
   groupPlacements: any[];
   displayConfig?: TimelineItemDisplayConfig;
   onIssueClick?: (issue: TimelineItemType) => void;
+  selectedItemId?: string | null;
 }>(
   ({
     year,
@@ -45,6 +47,7 @@ const YearRenderer = React.memo<{
     groupPlacements,
     displayConfig,
     onIssueClick,
+    selectedItemId,
   }) => {
     // 🚀 性能优化：缓存月份列表计算
     const monthIndices = useMemo(() => {
@@ -69,6 +72,7 @@ const YearRenderer = React.memo<{
               groupPlacements={groupPlacements}
               displayConfig={displayConfig}
               onIssueClick={onIssueClick}
+              selectedItemId={selectedItemId}
             />
           ))}
         </Column>
@@ -87,6 +91,7 @@ const MonthRenderer = React.memo<{
   groupPlacements: GroupPlacement[];
   displayConfig?: TimelineItemDisplayConfig;
   onIssueClick?: (issue: TimelineItemType) => void;
+  selectedItemId?: string | null;
 }>(
   ({
     year,
@@ -97,6 +102,7 @@ const MonthRenderer = React.memo<{
     groupPlacements,
     displayConfig,
     onIssueClick,
+    selectedItemId,
   }) => {
     // 🚀 性能优化：缓存天数计算
     const daysInMonth = useMemo(
@@ -126,6 +132,7 @@ const MonthRenderer = React.memo<{
               groupPlacements={groupPlacements}
               displayConfig={displayConfig}
               onIssueClick={onIssueClick}
+              selectedItemId={selectedItemId}
             />
           );
         }
@@ -144,6 +151,7 @@ const MonthRenderer = React.memo<{
       groupPlacements,
       displayConfig,
       onIssueClick,
+      selectedItemId,
     ]);
 
     return (
@@ -164,9 +172,10 @@ const DayRenderer = React.memo<{
   dayWidth: number;
   cellHeight: number;
   groupGap: number;
-  groupPlacements: GroupPlacement[];
+  groupPlacements: GroupPlacement<Record<string, unknown>>[];
   displayConfig?: TimelineItemDisplayConfig;
   onIssueClick?: (issue: TimelineItemType) => void;
+  selectedItemId?: string | null;
 }>(
   ({
     year,
@@ -178,6 +187,7 @@ const DayRenderer = React.memo<{
     groupPlacements,
     displayConfig,
     onIssueClick,
+    selectedItemId,
   }) => {
     // 🚀 性能优化：只有当天有项目时才渲染分组
     const hasItemsOnThisDay = useMemo(() => {
@@ -218,6 +228,7 @@ const DayRenderer = React.memo<{
                   groupGap={groupGap}
                   displayConfig={displayConfig}
                   onIssueClick={onIssueClick}
+                  selectedItemId={selectedItemId}
                 />
               </React.Fragment>
             ))}
@@ -238,6 +249,7 @@ export const TimelineItems = React.memo(
     groupPlacements,
     displayConfig,
     onIssueClick,
+    selectedItemId,
   }: TimelineItemsProps<T>) => {
     return (
       <Column className={styles["timeline-vertical-column-container"]}>
@@ -254,6 +266,7 @@ export const TimelineItems = React.memo(
             groupPlacements={groupPlacements}
             displayConfig={displayConfig}
             onIssueClick={onIssueClick}
+            selectedItemId={selectedItemId}
           />
         ))}
       </Column>

@@ -29,7 +29,7 @@
  * <Timeline inputData={data} />
  */
 
-import React, { useRef, useCallback, useMemo, useState, useEffect } from "react";
+import React, { useRef, useCallback, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import {
   type TimelineProps,
   type TimelineItemType,
@@ -70,6 +70,11 @@ import { TodayButton } from "./Shared/TodayButton";
 import { RightSidebar } from "tristan-ui";
 import { IssueDetails } from "./IssueDetails";
 import { useFullscreen } from "tristan-ui";
+
+// Timeline 组件的公共方法接口
+export interface TimelineRef {
+  scrollToDate: (date: Date) => void;
+}
 
 // 内部函数：创建 zoom controls
 function createZoomControls(
@@ -182,7 +187,8 @@ function useTimelineGroupBy<T = Record<string, unknown>>(
 }
 
 // 通用的Timeline组件 - 支持泛型，现在作为主要接口
-export function Timeline<T = Record<string, unknown>>({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(function Timeline<T = Record<string, unknown>>({
   // init 参数直接接收 TimelineItemDisplayConfig，简化配置
   inputData,
   init,
@@ -196,7 +202,7 @@ export function Timeline<T = Record<string, unknown>>({
   defaultDayWidth = 12,
   issueDetailsConfig,
   urlParams,
-}: TimelineProps<T>) {
+}: TimelineProps<T>, ref: React.Ref<TimelineRef>) {
   // URL 参数管理
   const urlParamsHook = useTimelineUrlParams(urlParams);
 
@@ -589,6 +595,28 @@ export function Timeline<T = Record<string, unknown>>({
     setSidebarOpen(true);
   }, [onItemClick]);
 
+  // 滚动到指定日期的回调函数
+  const handleScrollToDate = useCallback((date: Date) => {
+    const container = mainScrollRef.current;
+    if (!container || yearList.length === 0) return;
+
+    const sidebarWidth = hasGrouping ? TimelineConst.sidebarWidth : 0;
+    scrollToDate(
+      container,
+      date,
+      yearList,
+      startMonth,
+      dayWidth,
+      sidebarWidth,
+      true // smooth scrolling
+    );
+  }, [yearList, startMonth, dayWidth, hasGrouping]);
+
+  // 暴露组件的公共方法
+  useImperativeHandle(ref, () => ({
+    scrollToDate: handleScrollToDate,
+  }), [handleScrollToDate]);
+
   // Early return if no items to display
   if (allItems.length === 0) {
     return (
@@ -740,6 +768,7 @@ export function Timeline<T = Record<string, unknown>>({
                   groupPlacements={groupPlacements}
                   displayConfig={init as TimelineItemDisplayConfig}
                   onIssueClick={handleItemClick as unknown as (issue: TimelineItemType) => void}
+                  selectedItemId={selectedItem?.id || null}
                 />
               </div>
             </div>
@@ -786,12 +815,13 @@ export function Timeline<T = Record<string, unknown>>({
           <IssueDetails
             item={selectedItem}
             config={issueDetailsConfig}
+            onScrollToDate={handleScrollToDate}
           />
         )}
       </RightSidebar>
     </React.Fragment>
   );
-}
+});
 
 // 导出 useTimelineZoom hook 供外部使用
 export { useTimelineZoom };

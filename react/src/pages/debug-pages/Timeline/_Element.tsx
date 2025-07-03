@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   TimelineView,
   createFieldConfig,
   createSidebarProperty,
+  type TimelineViewRef,
 } from "../../../design-system/ui-demos/timeline";
 import {
   ExampleData,
@@ -12,7 +13,7 @@ import {
   type ProjectDataType,
   riskLevel,
 } from "./example-data";
-import { getRainbowColor } from "tristan-ui";
+import { Button, getRainbowColor } from "tristan-ui";
 import {
   NavTitle,
   TopNav,
@@ -22,6 +23,15 @@ import {
 import { IssueDetailsConfigBuilder } from "../../../design-system/ui-demos/timeline/issueDetailsConfig";
 
 export function Element(): React.ReactElement {
+  // 创建 TimelineView 的引用
+  const timelineRef = useRef<TimelineViewRef>(null);
+
+  // 滚动到指定日期的处理函数
+  const handleScrollToDate = (dateString: string) => {
+    const targetDate = new Date(dateString);
+    timelineRef.current?.scrollToDate(targetDate);
+  };
+
   // 🎯 定义缩放级别配置
   const zoomLevels = [
     // { label: "Days", dayWidth: 32 },
@@ -210,12 +220,15 @@ export function Element(): React.ReactElement {
             <NavTitle title="Roadmap of lululemon Initiatives" />,
           ]}
           right={[
-            
+            <Button onClick={() => handleScrollToDate('2025-08-30')}>
+              Scroll to 2025-08-30
+            </Button>
           ]}
         />
       }
       main={
-        <TimelineView<ProjectDataType>
+        <TimelineView
+          ref={timelineRef}
           // fetchByTimeInterval={[new Date("2025-01-01"), new Date("2025-12-30")]}
           init={itemDisplayConfigSimple}
           inputData={ExampleData}

@@ -10,6 +10,7 @@ import {
   ProgressField,
   TagField,
   PropertyFieldsTable,
+  Button,
 } from "tristan-ui";
 
 
@@ -18,6 +19,8 @@ interface IssueDetailsProps<T = Record<string, unknown>> {
   item: TimelineItemType<T>;
   /** Configuration object controlling how properties are displayed */
   config?: IssueDetailsConfig<T>;
+  /** Callback function to scroll to a specific date on the timeline */
+  onScrollToDate?: (date: Date) => void;
 }
 
 // Default property order for timeline items
@@ -53,6 +56,7 @@ const DEFAULT_PROPERTY_LABELS: Record<string, string> = {
 export function IssueDetails<T = Record<string, unknown>>({
   item,
   config = {},
+  onScrollToDate,
 }: IssueDetailsProps<T>): React.ReactElement {
   // Determine the final property order
   const finalOrder =
@@ -179,8 +183,19 @@ export function IssueDetails<T = Record<string, unknown>>({
     return mappingConfig?.label || DEFAULT_PROPERTY_LABELS[key] || key;
   };
 
+  const handleScrollToStartDate = () => {
+    if (onScrollToDate) {
+      const startDate = item.startDate instanceof Date ? item.startDate : new Date(item.startDate);
+      onScrollToDate(startDate);
+    }
+  };
+
   return (
     <PropertyFieldsTable>
+
+      {/* 滚动到这个 issue 的开始日期的按钮 */}
+      <Button icon="my_location" onClick={handleScrollToStartDate}>Find on Timeline</Button>
+      
       {availableProperties.map((key) => {
         const value = item[key as keyof typeof item];
         return renderField(key, value);

@@ -13,7 +13,7 @@ export * from './hooks';
 // 🎨 导出主组件
 // export { Timeline } from './ui/Timeline';
 export { IssueDetails } from './ui/IssueDetails';
-export { TimelineView } from './ui/TimelineView';
+export { TimelineView, type TimelineViewRef } from './ui/TimelineView';
 
 // 🪝 导出 hooks 和工具函数
 export { useTimelineZoom } from './ui/Timeline';

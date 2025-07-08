@@ -44,8 +44,12 @@ import {
   type TimelineItemDisplayConfig,
   type SortedTimelineDataType,
   type BaseTimelineItemType,
-  BaseTimelineItemKeys,
 } from "../types";
+
+// 辅助函数：检查时间线项目是否具有有效的 startDate 和 endDate
+function hasValidDates<T>(item: TimelineItemType<T>): boolean {
+  return !!(item.startDate && item.endDate);
+}
 import {
   TimelineItemInterval,
   sortTimelineItemsByStartDate,
@@ -304,17 +308,24 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(
       }
     }, [inputData, effectiveGroupBy]);
 
-    // Filter data based on fetchByTimeInterval
+    // Filter data based on fetchByTimeInterval and valid dates
     const filteredData = useMemo(() => {
-      if (!fetchByTimeInterval) {
-        return processedData;
-      }
-      const [start, end] = fetchByTimeInterval;
       const filteredGroups = processedData.data
         .map((group) => {
           const filteredItems = group.groupItems.filter((item) => {
-            const itemStart = new Date(item.startDate);
-            return itemStart >= start && itemStart <= end;
+            // 首先检查是否有有效的 startDate 和 endDate
+            if (!hasValidDates(item)) {
+              return false;
+            }
+
+            // 如果有时间区间限制，再检查时间区间
+            if (fetchByTimeInterval) {
+              const [start, end] = fetchByTimeInterval;
+              const itemStart = new Date(item.startDate!);
+              return itemStart >= start && itemStart <= end;
+            }
+
+            return true;
           });
           return { ...group, groupItems: filteredItems };
         })
@@ -391,17 +402,15 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(
       allItems as TimelineItemType<T>[]
     );
 
-    // 构建用于计算时间间隔的数据，使用基础字段键
-    const timelineIntervalData = sortedItems.map((item) => ({
-      id: item.id || "",
-      name: item.name || "",
-      startDate:
-        item.startDate ||
-        item[BaseTimelineItemKeys.START_DATE as keyof typeof item],
-      endDate:
-        item.endDate ||
-        item[BaseTimelineItemKeys.END_DATE as keyof typeof item],
-    }));
+    // 构建用于计算时间间隔的数据，只包含有有效日期的项目
+    const timelineIntervalData = sortedItems
+      .filter(hasValidDates)
+      .map((item) => ({
+        id: item.id || "",
+        name: item.name || "",
+        startDate: item.startDate!,
+        endDate: item.endDate!,
+      }));
 
     // Get list of years and start month that need to be displayed
     const { years: yearList, startMonth } = TimelineItemInterval({
@@ -704,14 +713,13 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(
         const placements: PlacementResult[] = [];
 
         sortedGroupItems.forEach((item) => {
-          const startDate = new Date(
-            item.startDate ||
-              item[BaseTimelineItemKeys.START_DATE as keyof typeof item]
-          );
-          const endDate = new Date(
-            item.endDate ||
-              item[BaseTimelineItemKeys.END_DATE as keyof typeof item]
-          );
+          // 只处理有有效日期的项目
+          if (!hasValidDates(item)) {
+            return;
+          }
+
+          const startDate = new Date(item.startDate!);
+          const endDate = new Date(item.endDate!);
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const column = findPlacement(

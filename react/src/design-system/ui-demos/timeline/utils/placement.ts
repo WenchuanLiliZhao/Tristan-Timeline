@@ -60,12 +60,16 @@ export const findPlacement = (
 export const calculateMaxOverlapCardinality = (items: TimelineItemType[]): number => {
   if (items.length === 0) return 1;
   
+  // Filter out items without valid dates
+  const validItems = items.filter(item => item.startDate && item.endDate);
+  if (validItems.length === 0) return 1;
+  
   // Create events array with start and end events
   const events: Array<{ date: Date; type: 'start' | 'end' }> = [];
   
-  items.forEach(item => {
-    events.push({ date: item.startDate, type: 'start' });
-    events.push({ date: item.endDate, type: 'end' });
+  validItems.forEach(item => {
+    events.push({ date: item.startDate!, type: 'start' });
+    events.push({ date: item.endDate!, type: 'end' });
   });
   
   // Sort events by date, with end events before start events for same date

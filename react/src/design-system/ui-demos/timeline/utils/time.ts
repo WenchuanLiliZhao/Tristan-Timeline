@@ -41,7 +41,10 @@ export interface TimelineInterval {
 }
 
 export function TimelineItemInterval({ inputData }: TimelineItemIntervalProps): TimelineInterval {
-  if (inputData.length === 0) {
+  // Filter out items without valid dates
+  const validItems = inputData.filter(item => item.startDate && item.endDate);
+  
+  if (validItems.length === 0) {
     const currentYear = new Date().getFullYear();
     return {
       years: [currentYear],
@@ -49,13 +52,13 @@ export function TimelineItemInterval({ inputData }: TimelineItemIntervalProps): 
     };
   }
 
-  const earliestStartDate = inputData.reduce((earliest, item) => {
-    return item.startDate < earliest ? item.startDate : earliest;
-  }, inputData[0].startDate);
+  const earliestStartDate = validItems.reduce((earliest, item) => {
+    return item.startDate! < earliest ? item.startDate! : earliest;
+  }, validItems[0].startDate!);
 
-  const latestEndDate = inputData.reduce((latest, item) => {
-    return item.endDate > latest ? item.endDate : latest;
-  }, inputData[0].endDate);
+  const latestEndDate = validItems.reduce((latest, item) => {
+    return item.endDate! > latest ? item.endDate! : latest;
+  }, validItems[0].endDate!);
 
   const startYear = earliestStartDate.getFullYear();
   const startMonth = earliestStartDate.getMonth();

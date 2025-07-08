@@ -2,17 +2,24 @@
  * 排序和分组相关的工具函数
  */
 
-import { type TimelineItemType, type SortedTimelineDataType, BaseTimelineItemKeys } from "../types";
+import { type TimelineItemType, type SortedTimelineDataType } from "../types";
 
 /**
  * Sort timeline items by start date
+ * Items without valid startDate will be placed at the end
  */
 export const sortTimelineItemsByStartDate = <T = Record<string, unknown>>(
   items: TimelineItemType<T>[]
 ): TimelineItemType<T>[] => {
   return [...items].sort((a, b) => {
-    const dateA = a.startDate || a[BaseTimelineItemKeys.START_DATE as keyof typeof a];
-    const dateB = b.startDate || b[BaseTimelineItemKeys.START_DATE as keyof typeof b];
+    const dateA = a.startDate;
+    const dateB = b.startDate;
+    
+    // Items without startDate go to the end
+    if (!dateA && !dateB) return 0;
+    if (!dateA) return 1;
+    if (!dateB) return -1;
+    
     return new Date(dateA).getTime() - new Date(dateB).getTime();
   });
 };

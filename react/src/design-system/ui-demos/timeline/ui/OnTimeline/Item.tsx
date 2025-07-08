@@ -161,7 +161,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({
     return (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
   };
 
-  const spannedMonths = calculateSpannedMonths(item.startDate, item.endDate);
+  const spannedMonths = calculateSpannedMonths(item.startDate!, item.endDate!);
 
   return (
     <div className={styles["timeline-item"]}>

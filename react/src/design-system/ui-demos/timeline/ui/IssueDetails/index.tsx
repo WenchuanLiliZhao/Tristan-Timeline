@@ -186,7 +186,7 @@ export function IssueDetails<T = Record<string, unknown>>({
   };
 
   const handleScrollToStartDate = () => {
-    if (onScrollToDate) {
+    if (onScrollToDate && item.startDate) {
       const startDate = item.startDate instanceof Date ? item.startDate : new Date(item.startDate);
       onScrollToDate(startDate);
     }
@@ -195,8 +195,10 @@ export function IssueDetails<T = Record<string, unknown>>({
   return (
     <PropertyFieldsTable>
 
-      {/* 滚动到这个 issue 的开始日期的按钮 */}
-      <Button icon="my_location" onClick={handleScrollToStartDate}>Find on Timeline</Button>
+      {/* 滚动到这个 issue 的开始日期的按钮 - 只有当 startDate 存在时才显示 */}
+      {item.startDate && (
+        <Button icon="my_location" onClick={handleScrollToStartDate}>Find on Timeline</Button>
+      )}
       
       {availableProperties.map((key) => {
         const value = item[key as keyof typeof item];

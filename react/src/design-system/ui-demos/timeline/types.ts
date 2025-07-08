@@ -60,12 +60,12 @@ export interface ProgressColorStop {
   color: TimelineColorType;
 }
 
-// 基础时间线项目接口 - 只包含四个必需字段
+// 基础时间线项目接口 - id和name为必需字段，startDate和endDate为可选字段
 export interface BaseTimelineItemType {
   id: string;
   name: string;
-  startDate: Date;
-  endDate: Date;
+  startDate?: Date;
+  endDate?: Date;
 }
 
 // 基础字段键

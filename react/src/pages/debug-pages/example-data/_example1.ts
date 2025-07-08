@@ -4,8 +4,8 @@ export const Example_Issues_1: ProjectDataType[] = [
   {
     id: "1",
     name: "Interactive Calculus Workshop",
-    startDate: new Date("2024-01-01"),
-    endDate: new Date("2024-03-31"),
+    // startDate: new Date("2024-01-01"),
+    // endDate: new Date("2024-03-31"),
     projectKey: "CALC-001",
     status: "high",
     progress: 50,

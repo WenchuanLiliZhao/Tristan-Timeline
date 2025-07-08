@@ -14,6 +14,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={DebugPages.Timeline.content} />
+        <Route path="/issues-table" element={DebugPages.IssuesTable.content} />
         <Route path="*" element={DemoPages.NotFound.content} />
 
         {Object.values(DemoPages).map((page) => (

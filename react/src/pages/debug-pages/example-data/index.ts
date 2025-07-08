@@ -1,4 +1,4 @@
-import type { BaseTimelineItemType } from "../../../../design-system/ui-demos";
+import type { BaseTimelineItemType } from "../../../design-system/ui-demos";
 import { getRainbowColor } from "tristan-ui";
 import { Example_Issues_1 } from "./_example1";
 import { Example_Issues_2 } from "./_example2";

@@ -1,6 +1,6 @@
 {
   "name": "tristan-timeline",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A modern React timeline component library extracted from tristan-ui",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -85,6 +85,6 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "tristan-ui": "^0.4.36"
+    "tristan-ui": "^0.4.41"
   }
 }

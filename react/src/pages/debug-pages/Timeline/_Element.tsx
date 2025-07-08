@@ -76,15 +76,22 @@ export function Element(): React.ReactElement {
 
       createFieldConfig.iconFromMap<ProjectDataType>("priority", priority),
     ],
-    tagFields: [createFieldConfig.tagFromMap<ProjectDataType>("team", team)],
+    tagFields: [
+      createFieldConfig.tagFromMap<ProjectDataType>("status", status),
+      // createFieldConfig.tagFromMap<ProjectDataType>("priority", priority),
+      // createFieldConfig.tagFromMap<ProjectDataType>("riskLevel", riskLevel),
+      // createFieldConfig.tagFromMap<ProjectDataType>("category", status),
+
+      createFieldConfig.tagFromMap<ProjectDataType>("team", team),
+    ],
   };
 
   // 🎯 配置sidebar属性分布可视化
   const sidebarProperties = [
-    createSidebarProperty.fromMap<ProjectDataType>("team", team, {
-      label: "Teams",
-      showCount: false,
-    }),
+    // createSidebarProperty.fromMap<ProjectDataType>("team", team, {
+    //   label: "Teams",
+    //   showCount: false,
+    // }),
     createSidebarProperty.fromProgressField<ProjectDataType>("progress", {
       label: "Progress",
       maxValueOfEachItem: 100, // 设置每个 issue 的满分
@@ -179,12 +186,9 @@ export function Element(): React.ReactElement {
       },
       {
         property: "team",
-        displayType: "text",
+        displayType: "tag",
+        valueMapping: team,
         label: "负责团队", // 🏷️ 自定义标签：在UI中显示为"负责团队"而不是"Team"
-        displayOptions: {
-          color: "var(--color--semantic-active)",
-          fontWeight: "medium",
-        },
       },
       {
         property: "category",

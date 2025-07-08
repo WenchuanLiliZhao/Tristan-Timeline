@@ -96,6 +96,7 @@ export function IssueDetails<T = Record<string, unknown>>({
             color={mapped.color}
             icon={mapped.icon}
             variant={displayOptions.tagVariant}
+            size={"medium"}
           />
         );
       } else if (displayType === "tag") {
@@ -107,6 +108,7 @@ export function IssueDetails<T = Record<string, unknown>>({
             name={String(value)}
             color={displayOptions.color || "primary"}
             variant={displayOptions.tagVariant}
+            size={"medium"}
           />
         );
       }

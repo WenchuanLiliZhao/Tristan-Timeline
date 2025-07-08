@@ -5,8 +5,8 @@
   width: 240px; /* TimelineConst.sidebarWidth */
   height: 100px; /* TimelineConstCalc.rulerHeight */
   z-index: 200; /* 高于所有其他 timeline 元素 */
-  background-color: var(--color--bg-secondary);
-  border-right: 2px solid var(--color--border-prime);
+  background-color: var(--color--bg-prime);
+  border-right: 1px solid var(--color--border-prime);
   pointer-events: auto; /* 确保可以交互 */
 
   .group-by-container {

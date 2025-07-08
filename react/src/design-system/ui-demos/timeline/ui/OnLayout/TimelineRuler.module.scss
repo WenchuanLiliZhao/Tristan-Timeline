@@ -24,7 +24,7 @@
       line-height: 20px;
       font-weight: bold;
       padding: 0 8px;
-      background-color: var(--color--bg-secondary);
+      // background-color: var(--color--bg-secondary);
       text-align: center;
       display: flex;
       align-items: center;
@@ -32,7 +32,7 @@
       gap: 4px;
 
       
-      border-top: 1px solid var(--color--border-prime);
+      border-top: 1px dashed var(--color--border-prime);
       border-bottom: 1px solid var(--color--border-prime);
       
 

@@ -32,15 +32,6 @@
     overscroll-behavior-x: auto;
   }
 
-  .timeline-right-sidebar {
-    position: fixed;
-    top: 60px;
-    right: 0;
-    height: calc(100vh - 60px);
-    z-index: 1000;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-  }
-
   .timeline-ruler-sticky {
     position: sticky;
     top: 0;
@@ -72,7 +63,6 @@
     z-index: 101;
     background-color: var(--color--bg-prime);
     flex-shrink: 0;
-    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
   }
 
   .timeline-items-container {

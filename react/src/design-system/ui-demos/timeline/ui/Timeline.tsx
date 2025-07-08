@@ -721,7 +721,6 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(
           const startDate = new Date(item.startDate!);
           const endDate = new Date(item.endDate!);
 
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const column = findPlacement(
             placements,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -893,7 +892,7 @@ export const Timeline = forwardRef<TimelineRef, TimelineProps<any>>(
                 // Added fullscreen toggle button
                 <Button
                   key="fullscreen-toggle"
-                  icon={isFullscreen ? "fullscreen_exit" : "fullscreen"}
+                  icon={isFullscreen ? "minimize-2" : "maximize-2"}
                   variant="ghost"
                   onClick={toggleFullscreen}
                 />,

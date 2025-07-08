@@ -51,17 +51,17 @@ export const priority = {
   high: {
     name: "High",
     color: getRainbowColor('rose'),
-    icon: "stat_2"
+    icon: "chevron_up"
   },
   medium: {
     name: "Medium",
     color: getRainbowColor('blue'),
-    icon: "stat_1"
+    icon: "equal"
   },
   low: {
     name: "Low",
     color: getRainbowColor('emerald'),
-    icon: "stat_minus_1"
+    icon: "chevron_down"
   }
 }
 

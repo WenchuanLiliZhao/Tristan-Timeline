@@ -53,6 +53,15 @@ const DEFAULT_PROPERTY_LABELS: Record<string, string> = {
   projectKey: "Project Key",
 };
 
+// Helper function to check if a value is empty or meaningless
+const isEmptyValue = (value: unknown): boolean => {
+  if (value === undefined || value === null) return true;
+  if (typeof value === 'string' && value.trim() === '') return true;
+  if (Array.isArray(value) && value.length === 0) return true;
+  if (typeof value === 'object' && value !== null && Object.keys(value).length === 0) return true;
+  return false;
+};
+
 export function IssueDetails<T = Record<string, unknown>>({
   item,
   config = {},
@@ -64,12 +73,11 @@ export function IssueDetails<T = Record<string, unknown>>({
       ? (config.propertyOrder as string[])
       : DEFAULT_PROPERTY_ORDER;
 
-  // Filter only existing properties
+  // Filter only non-empty properties
   const availableProperties = finalOrder.filter(
     (key) =>
       key in item &&
-      item[key as keyof typeof item] !== undefined &&
-      item[key as keyof typeof item] !== null
+      !isEmptyValue(item[key as keyof typeof item])
   );
 
   // Decide which specialized field component to render
